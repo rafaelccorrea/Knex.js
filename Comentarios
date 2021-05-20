@@ -58,4 +58,21 @@ db.select(
     console.log(err)
 })
 
+
+//transaction = Prevencao de erros
+async function teste(){
+    try{
+        await db.transaction(async trans => {
+            await db.insert({nome_estudio: 'Axios'}).table("estudios")
+            await db.insert({nome_estudio: 'Guia'}).table("estudios")
+            await db.insert({nome_estudio: 'Systems'}).table("estudios")
+            await db.insert({nome_estudio: 'Fuull'}).table("estudios")
+        });
+    }catch(err){
+        console.log(err);
+    }   
+}
+
+teste();
+
 */
