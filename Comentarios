@@ -44,4 +44,18 @@ db.insert({
     console.log(data)
 })
 
+//Relacao muitos para muitos
+db.select(
+    "nome_estudio as Nome Estudio: ",
+    "games.nome as Nome Game: "
+).table("games_estudios")
+.innerJoin("games", "games.id", "game_id") // Busque na tabela games o games.id do game e compare game_id da tabela estudio
+.innerJoin("estudios", "estudios.id", "games_estudios.estudio_id")
+.where("games.id", 1)
+.then((data) => {
+    console.log(data)
+}).catch((err) => {
+    console.log(err)
+})
+
 */
